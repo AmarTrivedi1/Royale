@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
 
         foreach (GameObject tower in towers)
         {
-            Tower towerScript = tower.GetComponent<Tower>(); // Access the Tower script attached to the GameObject
+            Tower towerScript = tower.GetComponent<Tower>(); // Access the Tower script attached to the Tower GameObject
             if(towerScript != null && towerScript.playerNum != this.playerNum) // Ensure tower belongs to a different player
             {
                 // Calculate the distance to each tower
@@ -105,7 +105,7 @@ public class Enemy : MonoBehaviour
         }
 
         /*
-        // I, Amar added this but does not fully work rn.
+        // I, Amar added this but does not fully work rn. Enemies aren't dying when getting shot right now.
         if (collision.gameObject.CompareTag("TowerShot"))
         {
             TakeDamage(10);

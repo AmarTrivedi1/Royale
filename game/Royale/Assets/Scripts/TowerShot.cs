@@ -11,8 +11,7 @@ public class TowerShot : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>(); // Getting the bullet's rigid body component
-        MoveBullet(); // Start the bullet movement
+
     }
 
     void Update()
@@ -20,14 +19,12 @@ public class TowerShot : MonoBehaviour
 
     }
 
-    void MoveBullet()
+    // Is called from the Tower.cs script when the TowerShot is instantiated. Set's the target for the shot
+    public void SetTarget(Vector2 targetPosition)
     {
-        // Calculate the direction from the turret to the enemy
-        Vector3 directionToEnemy = GameObject.FindObjectOfType<Enemy>().transform.position - transform.position;
-        directionToEnemy.Normalize();
-
-        // Set the velocity based on the speed
-        rb.velocity = directionToEnemy * speed;
+        if (rb == null) rb = GetComponent<Rigidbody2D>(); // Ensure rb is set
+        Vector2 directionToTarget = (targetPosition - (Vector2)transform.position).normalized;
+        rb.velocity = directionToTarget * speed;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
