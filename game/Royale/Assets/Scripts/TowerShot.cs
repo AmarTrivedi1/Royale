@@ -5,33 +5,48 @@ using UnityEngine.UIElements;
 
 public class TowerShot : MonoBehaviour
 {
-    float speed = 3; //Turret shot speed
-    Rigidbody2D rb; //The bullets rigid body (handles the physics)
-    Vector2 directionToEnemy; //Which direction the turret has to shoot (mainly used for shooting left or right but also accounts of height)
-    Vector2 velocity; //The velocity of the bullet
+    public int damage = 10; // Damage inflicted by the bullet (adjust as needed)
+    public float speed = 3; // Turret shot speed
+    private Rigidbody2D rb; // The bullet's rigid body
 
-    // Start is called before the first frame update
     void Start()
     {
-        rb = gameObject.GetComponent<Rigidbody2D>(); //Getting the bullets rigid body component
-        //Calculation for the direction from the turret to the enemy
-        directionToEnemy = GameObject.FindObjectOfType<Enemy>().transform.position - gameObject.transform.position;
-        directionToEnemy.Normalize();
-        //Setting the velocity based on the speed
-        velocity = directionToEnemy * speed;
-        rb.velocity = velocity;
+        rb = GetComponent<Rigidbody2D>(); // Getting the bullet's rigid body component
+        MoveBullet(); // Start the bullet movement
     }
 
-    // Update is called once per frame
     void Update()
     {
 
     }
 
-    //This is called when a collision component enters another
-    private void OnTriggerEnter2D(Collider2D collision)
+    void MoveBullet()
     {
-        //Destroys the bullet once it hits a unit.
+        // Calculate the direction from the turret to the enemy
+        Vector3 directionToEnemy = GameObject.FindObjectOfType<Enemy>().transform.position - transform.position;
+        directionToEnemy.Normalize();
+
+        // Set the velocity based on the speed
+        rb.velocity = directionToEnemy * speed;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        // Check if the bullet collides with an enemy
+        if (collision.CompareTag("Enemy"))
+        {
+            // Get the Enemy component from the collided GameObject
+            Enemy enemy = collision.GetComponent<Enemy>();
+
+            // Check if the enemy component exists
+            if (enemy != null)
+            {
+                // Inflict damage to the enemy
+                enemy.TakeDamage(damage);
+            }
+        }
+
+        // Destroy the bullet upon collision with any object
         Destroy(gameObject);
     }
 }

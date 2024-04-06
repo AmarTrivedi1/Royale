@@ -8,7 +8,6 @@ public class Tower : MonoBehaviour
 {
     //All set to public so they can be changed in unity editor (not sure how to make them private but still visible to the editor)
     public int health = 0; //The turrets health.
-    public int damage = 0; //The amount of damage a turret does (Might be moved into TowerShot.cs if all turrets will do the same amount of damage).
     public float attackSpeed = 0; //The attack speed for each turret in seconds.
     public float timeUntilAttack; //The turret's attack cool down.
     public int attackRange = 0; //The attack range for each turret in units (Have to play around with the units to find a good range).
@@ -38,7 +37,7 @@ public class Tower : MonoBehaviour
                 //Attack and set the timer back to the attack speed
                 Attack();
                 timeUntilAttack = attackSpeed;
-                health -= 10; //This is just to test killing the turret (Most likely to be implemented in another way once units are working)
+                //health -= 10; //This is just to test killing the turret (Most likely to be implemented in another way once units are working)
             }
         }
         //If there is no current target
@@ -68,7 +67,6 @@ public class Tower : MonoBehaviour
     {
         //Create a turret shot (check TowerShot.cs for bullet code).
         GameObject towerShot = Instantiate(shotPrefab, transform.position, Quaternion.identity);
-
     }
 
     void Die()
