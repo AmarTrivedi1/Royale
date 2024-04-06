@@ -17,6 +17,8 @@ public class Tower : MonoBehaviour
     private Enemy targetedEnemy; //The targeted enemy unit.
     private bool enemyTargeted = false; //Whether there is an active targeted enemy unit.
 
+    public int playerNum = 2; // Player 1 or Player 2 tower. Used for card/enemy targeting.
+
     // Start is called before the first frame update
     void Start()
     {

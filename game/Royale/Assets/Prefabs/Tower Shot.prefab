@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3918642769158839016}
   m_Layer: 0
   m_Name: Tower Shot
-  m_TagString: Untagged
+  m_TagString: TowerShot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -18,6 +18,9 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D rb;
     private Transform target; // Reference to the target (Tower)
 
+    public int playerNum = 1; // Is it a player 1 or player 2 card? Setting this to 1 manually for testing purposes, but will be set when player places cards.
+    
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -54,16 +57,21 @@ public class Enemy : MonoBehaviour
 
         foreach (GameObject tower in towers)
         {
-            // Calculate the distance to each tower
-            Vector2 directionToTower = new Vector2(tower.transform.position.x, tower.transform.position.y) - currentPosition;
-            float distance = directionToTower.magnitude;
-
-            // Check if this tower is closer than the previous closest tower
-            if (distance < shortestDistance)
+            Tower towerScript = tower.GetComponent<Tower>(); // Access the Tower script attached to the GameObject
+            if(towerScript != null && towerScript.playerNum != this.playerNum) // Ensure tower belongs to a different player
             {
-                shortestDistance = distance;
-                nearestTower = tower.transform;
+                // Calculate the distance to each tower
+                Vector2 directionToTower = new Vector2(tower.transform.position.x, tower.transform.position.y) - currentPosition;
+                float distance = directionToTower.magnitude;
+
+                // Check if this tower is closer than the previous closest tower
+                if (distance < shortestDistance)
+                {
+                    shortestDistance = distance;
+                    nearestTower = tower.transform;
+                }
             }
+
         }
         return nearestTower;
     }
@@ -95,5 +103,13 @@ public class Enemy : MonoBehaviour
             // Stop the enemy when it collides with the tower
             rb.velocity = Vector2.zero;
         }
+
+        /*
+        // I, Amar added this but does not fully work rn.
+        if (collision.gameObject.CompareTag("TowerShot"))
+        {
+            TakeDamage(10);
+        }
+        */
     }
 }

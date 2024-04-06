@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7316454614506774420}
   m_Layer: 0
   m_Name: Tower
-  m_TagString: Untagged
+  m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ MonoBehaviour:
   timeUntilAttack: 1
   attackRange: 10
   position: 
-  shotPrefab: {fileID: 0}
+  shotPrefab: {fileID: 7630661399354465558, guid: 534e2abb286c7c64aa86935c158248a4, type: 3}
 --- !u!50 &7316454614506774420
 Rigidbody2D:
   serializedVersion: 4
