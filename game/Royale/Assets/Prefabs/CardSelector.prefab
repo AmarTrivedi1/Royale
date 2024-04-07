@@ -44,10 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bacc894d24a7b8d458b4cf94844d4837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cards:
-  - {fileID: 532999470758601455, guid: 3544dfe143fa79a498b14303275efd6f, type: 3}
-  - {fileID: 532999470758601455, guid: 3544dfe143fa79a498b14303275efd6f, type: 3}
-  - {fileID: 532999470758601455, guid: 3544dfe143fa79a498b14303275efd6f, type: 3}
-  - {fileID: 532999470758601455, guid: 3544dfe143fa79a498b14303275efd6f, type: 3}
-  spawnP1Top: {fileID: 7196192648522267852, guid: b266452d03a78a5428432266f54d07ab, type: 3}
-  spawnP1Bot: {fileID: 3460183908917115511, guid: 388deeed67a07914097e5a612fae4a5b, type: 3}
+  p1Cards:
+  - {fileID: 6379711993548419812, guid: f0290c59bf1b251429d90a97da143062, type: 3}
+  - {fileID: 6379711993548419812, guid: f0290c59bf1b251429d90a97da143062, type: 3}
+  - {fileID: 6379711993548419812, guid: f0290c59bf1b251429d90a97da143062, type: 3}
+  - {fileID: 6379711993548419812, guid: f0290c59bf1b251429d90a97da143062, type: 3}
+  p1SpawnTop: {fileID: 3460183908917115511, guid: ed5b102318a32dd49bdd359adf44ab99, type: 3}
+  p1SpawnBot: {fileID: 3460183908917115511, guid: 388deeed67a07914097e5a612fae4a5b, type: 3}
+  p2Cards:
+  - {fileID: 6379711993548419812, guid: 926fea485f46a4a438b8eeddb88c5e77, type: 3}
+  - {fileID: 6379711993548419812, guid: 926fea485f46a4a438b8eeddb88c5e77, type: 3}
+  - {fileID: 6379711993548419812, guid: 926fea485f46a4a438b8eeddb88c5e77, type: 3}
+  - {fileID: 6379711993548419812, guid: 926fea485f46a4a438b8eeddb88c5e77, type: 3}
+  p2SpawnTop: {fileID: 3460183908917115511, guid: 45ad04326b3775049be9e09c9b3f14a5, type: 3}
+  p2SpawnBot: {fileID: 3460183908917115511, guid: 2455cf1a53db14b4893f96834729d95e, type: 3}

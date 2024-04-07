@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3460183908917115511}
   - component: {fileID: 4617051984507576785}
   m_Layer: 0
-  m_Name: SpawnP1Bot
+  m_Name: P1SpawnBot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
