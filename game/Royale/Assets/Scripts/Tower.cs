@@ -17,6 +17,8 @@ public class Tower : MonoBehaviour
     private Enemy targetedEnemy; //The targeted enemy unit.
     private bool enemyTargeted = false; //Whether there is an active targeted enemy unit.
 
+    public int playerNum = 2; // Player 1 or Player 2 tower. Used for card/enemy targeting.
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class Tower : MonoBehaviour
     void Update()
     {
         //Once an enemy is targeted it should not switch targets until the current target has been destroyed
-        if (enemyTargeted && targetedEnemy != null) 
+        if (enemyTargeted && targetedEnemy != null)
         {
             //Count down from the attack speed
             timeUntilAttack -= Time.deltaTime;
@@ -43,17 +45,37 @@ public class Tower : MonoBehaviour
         //If there is no current target
         else
         {
-            //Loop through all current units on board (Using find objects with tags may need to be changed once units are working)
-            for (int i = 0; i < GameObject.FindGameObjectsWithTag("Enemy").Length; i++)
+
+            // Find all enemy game objects and save to this array
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            float closestDistance = Mathf.Infinity;
+            GameObject closestEnemy = null;
+
+            // Loop through each enemy
+            foreach (GameObject enemyGameObject in enemies)
             {
-                //Once a unit is within the turrets attack range (Using find objects with tag may need to be changed once units are working)
-                if (Vector2.Distance(this.transform.position, GameObject.FindGameObjectsWithTag("Enemy")[i].transform.position) < attackRange)
+                // Get the Enemy.cs public vars
+                Enemy enemy = enemyGameObject.GetComponent<Enemy>();
+                // If the enemy is not the same player number as the Tower, set it to be the closest enemy on the board
+                if (enemy != null && enemy.playerNum != this.playerNum)
                 {
-                    enemyTargeted = true;
-                    //This is setting targeted enemy, will likely be changed once units are working.
-                    targetedEnemy = GameObject.FindObjectsByType<Enemy>(FindObjectsSortMode.None)[i];
+                    float distance = Vector2.Distance(transform.position, enemyGameObject.transform.position);
+                    if (distance < closestDistance && distance < attackRange)
+                    {
+                        closestDistance = distance;
+                        closestEnemy = enemyGameObject;
+                    }
                 }
             }
+
+            // Set the closest enemy to the be the target.
+            if (closestEnemy != null)
+            {
+                targetedEnemy = closestEnemy.GetComponent<Enemy>();
+                enemyTargeted = true;
+            }
+
+
         }
 
         //If the turret has 0 health, destroy it.
@@ -67,11 +89,29 @@ public class Tower : MonoBehaviour
     {
         //Create a turret shot (check TowerShot.cs for bullet code).
         GameObject towerShot = Instantiate(shotPrefab, transform.position, Quaternion.identity);
+
+        // Passing the value for the target to the towershot
+        TowerShot towerShotScript = towerShot.GetComponent<TowerShot>();
+        if (targetedEnemy != null && towerShotScript != null)
+        {
+            towerShotScript.SetTarget(targetedEnemy.transform.position);
+        }
     }
 
     void Die()
     {
         //Destroy the turret once it is dead
         Destroy(gameObject);
+    }
+
+    // Used in the enemy script when it is attacking a tower
+    public void TakeDamage(int damage)
+    {
+        Debug.Log("Tower taking damage");
+        health -= damage;
+        if (health <= 0)
+        {
+            Die(); 
+        }
     }
 }
