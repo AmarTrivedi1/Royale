@@ -16,7 +16,11 @@ public class TowerShot : MonoBehaviour
 
     void Update()
     {
-
+        //Incase the bullets miss their target, destory them based on distance to clear memory (20 can be played around with).
+        if (Vector2.Distance(transform.position, transform.parent.position) > 20)
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Is called from the Tower.cs script when the TowerShot is instantiated. Set's the target for the shot

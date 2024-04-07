@@ -88,7 +88,7 @@ public class Tower : MonoBehaviour
     void Attack()
     {
         //Create a turret shot (check TowerShot.cs for bullet code).
-        GameObject towerShot = Instantiate(shotPrefab, transform.position, Quaternion.identity);
+        GameObject towerShot = Instantiate(shotPrefab, transform.position, Quaternion.identity, transform);
 
         // Passing the value for the target to the towershot
         TowerShot towerShotScript = towerShot.GetComponent<TowerShot>();
