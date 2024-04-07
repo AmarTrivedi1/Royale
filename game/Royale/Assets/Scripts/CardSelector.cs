@@ -4,59 +4,95 @@ using UnityEngine;
 
 public class CardSelector : MonoBehaviour
 {
-    public GameObject[] cards; // Array of card game objects.
-    public Transform spawnP1Top; // Reference to the top spawn point.
-    public Transform spawnP1Bot; // Reference to the bottom spawn point.
-    private int selectedCardIndex = -1; // No card is selected initially.
+    // Player 1 values.
+    public GameObject[] p1Cards;
+    public Transform P1SpawnTop;
+    public Transform P1SpawnBot;
+    private int p1SelectedCardIndex = -1;
 
+    // Player 2 values.
+    public GameObject[] p2Cards;
+    public Transform P2SpawnTop;
+    public Transform P2SpawnBot;
+    private int p2SelectedCardIndex = -1;
+    
+    // Executed every frame.
     void Update()
     {
-        // Listen for number key presses (1-4) to select corresponding cards.
-        if (Input.GetKeyDown(KeyCode.Alpha1)) SelectCard(0);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) SelectCard(1);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) SelectCard(2);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) SelectCard(3);
+        // Player 1 controls. (1, 2, 3, 4)
+        if (Input.GetKeyDown(KeyCode.Alpha1)) SelectCard(ref p1SelectedCardIndex, 0, p1Cards);
+        if (Input.GetKeyDown(KeyCode.Alpha2)) SelectCard(ref p1SelectedCardIndex, 1, p1Cards);
+        if (Input.GetKeyDown(KeyCode.Alpha3)) SelectCard(ref p1SelectedCardIndex, 2, p1Cards);
+        if (Input.GetKeyDown(KeyCode.Alpha4)) SelectCard(ref p1SelectedCardIndex, 3, p1Cards);
+        // Player 2 controls. (7, 8, 9, 0)
+        if (Input.GetKeyDown(KeyCode.Alpha7)) SelectCard(ref p2SelectedCardIndex, 0, p2Cards);
+        if (Input.GetKeyDown(KeyCode.Alpha8)) SelectCard(ref p2SelectedCardIndex, 1, p2Cards);
+        if (Input.GetKeyDown(KeyCode.Alpha9)) SelectCard(ref p2SelectedCardIndex, 2, p2Cards);
+        if (Input.GetKeyDown(KeyCode.Alpha0)) SelectCard(ref p2SelectedCardIndex, 3, p2Cards);
 
-        // If a card is selected:
-        if (selectedCardIndex != -1)
+        // Placement controls for Player 1.
+        if (p1SelectedCardIndex != -1)
         {
-            // If a user presses w (for top row placement).
+            // If player 1 presses 'w' (top lane placement).
             if (Input.GetKeyDown(KeyCode.W))
             {
-                PlaceCard(spawnP1Top);
+                // Place the card in the corresponding postition.
+                PlaceCard(p1SelectedCardIndex, P1SpawnTop, p1Cards);
+                // Reset the index after placing the card.
+                p1SelectedCardIndex = -1;
             }
-            // If a user presses s (for botton row placement).
+            // If player 1 presses 's' (bot lane placement).
             else if (Input.GetKeyDown(KeyCode.S))
             {
-                PlaceCard(spawnP1Bot);
+                // Place the card in the corresponding postition.
+                PlaceCard(p1SelectedCardIndex, P1SpawnBot, p1Cards);
+                // Reset the index after placing the card.
+                p1SelectedCardIndex = -1;
+            }
+        }
+
+        // Placement controls for Player 2.
+        if (p2SelectedCardIndex != -1)
+        {
+            // If player 1 presses 'i' (bot lane placement).
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                // Place the card in the corresponding postition.
+                PlaceCard(p2SelectedCardIndex, P2SpawnTop, p2Cards);
+                // Reset the index after placing the card.
+                p2SelectedCardIndex = -1; 
+            }
+            // If player 2 presses 'j' (bot lane placement).
+            else if (Input.GetKeyDown(KeyCode.J))
+            {
+                // Place the card in the corresponding postition.
+                PlaceCard(p2SelectedCardIndex, P2SpawnBot, p2Cards);
+                // Reset the index after placing the card.
+                p2SelectedCardIndex = -1; 
             }
         }
     }
 
-    // Selects a card based on its index, and updates the selected card index.
-    void SelectCard(int index)
-    {   
-        // If the given index is within the range of available cards:
+    // Selects a card based on the given index and updates the appropriate player's selected card index.
+    void SelectCard(ref int selectedCardIndex, int index, GameObject[] cards)
+    {
+        // If the selected index is within the bounds of the cards array:
         if (index >= 0 && index < cards.Length)
         {
-            // Update the 'selectedCardIndex' to the current selection.
+            // Update the selected card index to reflect the player's choice.
             selectedCardIndex = index;
         }
     }
 
-    // Places a card depending on the spawnPoint.
-    void PlaceCard(Transform spawnPoint)
+    
+    // Places a card at the specified spawn point using the selected card index and cards array.
+    void PlaceCard(int selectedCardIndex, Transform spawnPoint, GameObject[] cards)
     {
-        // Extra check to ensure valid selection.
+        // If the selection is invalid among the players list:
         if (selectedCardIndex < 0 || selectedCardIndex >= cards.Length) return;
-        
-        // Get the prefab to instantiate.
+        // Retrieve the prefab to instantiate based on the selected card index.
         GameObject playerPrefab = cards[selectedCardIndex];
-        
-        // Instantiate the prefab at the spawn point.
+        // Instantiate the prefab at the designated spawn point.
         Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
-        
-        // Reset selectedCardIndex to allow for another selection.
-        selectedCardIndex = -1;
     }
 }
