@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class CardSelector : MonoBehaviour
 {
-    public GameObject[] cards;
-    private int selectedCardIndex = -1; // No card is selected initially
+    public GameObject[] cards; // Array of card game objects.
+    public Transform spawnP1Top; // Reference to the top spawn point.
+    public Transform spawnP1Bot; // Reference to the bottom spawn point.
+    private int selectedCardIndex = -1; // No card is selected initially.
 
     void Update()
     {
@@ -21,14 +23,12 @@ public class CardSelector : MonoBehaviour
             // If a user presses w (for top row placement).
             if (Input.GetKeyDown(KeyCode.W))
             {
-                // Place the selected card at the top row.
-                // PlaceCard(top);
+                PlaceCard(spawnP1Top);
             }
             // If a user presses s (for botton row placement).
             else if (Input.GetKeyDown(KeyCode.S))
             {
-                // Place the selected card at the bottom row.
-                // PlaceCard(bottom);
+                PlaceCard(spawnP1Bot);
             }
         }
     }
@@ -41,15 +41,22 @@ public class CardSelector : MonoBehaviour
         {
             // Update the 'selectedCardIndex' to the current selection.
             selectedCardIndex = index;
-            // Log the selection for debugging purposes.
-            Debug.Log("Card " + index + " selected.");
         }
     }
 
-    void PlaceCard(string position)
+    // Places a card depending on the spawnPoint.
+    void PlaceCard(Transform spawnPoint)
     {
-        // Implement logic to place the card on the game map
-        // Reset selectedCardIndex to allow for another selection
+        // Extra check to ensure valid selection.
+        if (selectedCardIndex < 0 || selectedCardIndex >= cards.Length) return;
+        
+        // Get the prefab to instantiate.
+        GameObject playerPrefab = cards[selectedCardIndex];
+        
+        // Instantiate the prefab at the spawn point.
+        Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
+        
+        // Reset selectedCardIndex to allow for another selection.
         selectedCardIndex = -1;
     }
 }
