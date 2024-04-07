@@ -103,4 +103,15 @@ public class Tower : MonoBehaviour
         //Destroy the turret once it is dead
         Destroy(gameObject);
     }
+
+    // Used in the enemy script when it is attacking a tower
+    public void TakeDamage(int damage)
+    {
+        Debug.Log("Tower taking damage");
+        health -= damage;
+        if (health <= 0)
+        {
+            Die(); 
+        }
+    }
 }

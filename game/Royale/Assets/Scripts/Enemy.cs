@@ -17,8 +17,10 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 2f; // Enemy default speed for noww
     private Rigidbody2D rb;
     private Transform target; // Reference to the target (Tower)
-
     public int playerNum = 1; // Is it a player 1 or player 2 card? Setting this to 1 manually for testing purposes, but will be set when player places cards.
+    public float attackCooldown = 5; // Seconds between attacks
+    private float attackCooldownTimer = 0; // Timer to track cooldown between attacks
+    public int attackDamage = 10; // Damage dealt to the tower on each attack
     
 
     void Start()
@@ -44,6 +46,12 @@ public class Enemy : MonoBehaviour
 
             // Move towards the target horizontally and vertically
             rb.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+
+            // Decrement the cooldown timer
+            if (attackCooldownTimer > 0)
+            {
+                attackCooldownTimer -= Time.fixedDeltaTime;
+            }
         }
     }
 
@@ -96,20 +104,29 @@ public class Enemy : MonoBehaviour
     }
 
     // Collision detection with tower
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Tower"))
         {
             // Stop the enemy when it collides with the tower
             rb.velocity = Vector2.zero;
+
+            Debug.Log("Enemy stopping at tower");
         }
 
-        /*
-        // I, Amar added this but does not fully work rn. Enemies aren't dying when getting shot right now.
-        if (collision.gameObject.CompareTag("TowerShot"))
+    }
+
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Tower") && attackCooldownTimer <= 0)
         {
-            TakeDamage(10);
+            Tower tower = collision.gameObject.GetComponent<Tower>();
+            if (tower != null)
+            {
+                Debug.Log("Enemy attacking tower");
+                tower.TakeDamage(attackDamage); // Deal damage to the tower
+                attackCooldownTimer = attackCooldown; // Reset the attack cooldown timer
+            }
         }
-        */
     }
 }

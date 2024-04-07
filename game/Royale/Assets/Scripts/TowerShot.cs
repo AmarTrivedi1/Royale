@@ -40,10 +40,12 @@ public class TowerShot : MonoBehaviour
             {
                 // Inflict damage to the enemy
                 enemy.TakeDamage(damage);
+
+                // Destroy the bullet upon collision with an enemy
+                Destroy(gameObject);
             }
         }
 
-        // Destroy the bullet upon collision with any object
-        Destroy(gameObject);
+        
     }
 }

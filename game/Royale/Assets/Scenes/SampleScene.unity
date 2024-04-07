@@ -232,6 +232,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4447234310651786890, guid: bd5d25cc6d61b654396c356c8ebdccf5, type: 3}
+      propertyPath: topleft
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8573617836987627777, guid: bd5d25cc6d61b654396c356c8ebdccf5, type: 3}
       propertyPath: m_Name
       value: Tower (1)
@@ -506,6 +510,10 @@ PrefabInstance:
     - target: {fileID: 6379711993548419812, guid: f0290c59bf1b251429d90a97da143062, type: 3}
       propertyPath: m_Name
       value: Card
+      objectReference: {fileID: 0}
+    - target: {fileID: 6988108153649312291, guid: f0290c59bf1b251429d90a97da143062, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
