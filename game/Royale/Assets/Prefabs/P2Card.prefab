@@ -100,10 +100,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 200
-  moveSpeed: 1
+  moveSpeed: 3
   playerNum: 2
   attackCooldown: 5
-  attackDamage: 10
+  attackDamage: 50
 --- !u!50 &5217164988416486184
 Rigidbody2D:
   serializedVersion: 4
