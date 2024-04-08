@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     public float attackCooldown = 5; // Seconds between attacks
     private float attackCooldownTimer = 0; // Timer to track cooldown between attacks
     public int attackDamage = 10; // Damage dealt to the tower on each attack
-    
+
 
     void Start()
     {
@@ -36,16 +36,17 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        UpdateMovementTowardsTarget();
         // Check if the target exists
         if (target != null)
         {
-            // Calculate the direction towards the target
+            // Recalculate the direction towards the target 
             Vector2 currentPosition = new Vector2(transform.position.x, transform.position.y);
             Vector2 targetPosition = new Vector2(target.position.x, target.position.y);
             Vector2 direction = (targetPosition - currentPosition).normalized;
 
-            // Move towards the target horizontally and vertically
-            rb.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+            // Move towards the target 
+            rb.velocity = new Vector2(direction.x * moveSpeed, rb.velocity.y);
 
             // Decrement the cooldown timer
             if (attackCooldownTimer > 0)
@@ -53,7 +54,18 @@ public class Enemy : MonoBehaviour
                 attackCooldownTimer -= Time.fixedDeltaTime;
             }
         }
+        else
+        {
+            // If there's no current target, find a new one
+            target = FindNearestTower();
+            if (target == null)
+            {
+                // Optionally handle the case where there are no more towers
+                rb.velocity = Vector2.zero; // Stop moving if there are no targets
+            }
+        }
     }
+
 
     // Find the nearest tower to the enemy
     Transform FindNearestTower()
@@ -66,7 +78,7 @@ public class Enemy : MonoBehaviour
         foreach (GameObject tower in towers)
         {
             Tower towerScript = tower.GetComponent<Tower>(); // Access the Tower script attached to the Tower GameObject
-            if(towerScript != null && towerScript.playerNum != this.playerNum) // Ensure tower belongs to a different player
+            if (towerScript != null && towerScript.playerNum != this.playerNum) // Ensure tower belongs to a different player
             {
                 // Calculate the distance to each tower
                 Vector2 directionToTower = new Vector2(tower.transform.position.x, tower.transform.position.y) - currentPosition;
@@ -103,6 +115,21 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject); // Destroy the enemy GameObject
     }
 
+    // Method to handle tower destruction
+    public void TowerDestroyed()
+    {
+        target = FindNearestTower();
+        if (target != null)
+        {
+            /* Immediately update movement towards the new target
+               Had to reimplement the velocity logic for the enemy tower tracking.
+               For some reason the enemy velocity loads simultaneously with the enemy tracking and
+               The velocity does not initialize when the new target is acquired. */
+            UpdateMovementTowardsTarget();
+        }
+    }
+
+
     // Collision detection with tower
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -129,4 +156,21 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+
+    private void UpdateMovementTowardsTarget()
+    {
+        if (target != null)
+        {
+            Vector2 currentPosition = transform.position;
+            Vector2 targetPosition = target.position;
+            Vector2 direction = (targetPosition - currentPosition).normalized;
+
+            rb.velocity = new Vector2(direction.x * moveSpeed, direction.y * moveSpeed);
+        }
+        else
+        {
+            rb.velocity = Vector2.zero; 
+        }
+    }
+
 }
