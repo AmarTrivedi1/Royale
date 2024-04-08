@@ -14,10 +14,12 @@ public class Tower : MonoBehaviour
     public string position = ""; //Whether the turret is in the top or bottom lane.
     public GameObject shotPrefab; //The bullet prefab (Found in the editor assets/prefabs folder.
 
-    private Enemy targetedEnemy; //The targeted enemy unit.
+    public Enemy targetedEnemy; //The targeted enemy unit.
     private bool enemyTargeted = false; //Whether there is an active targeted enemy unit.
 
     public int playerNum = 2; // Player 1 or Player 2 tower. Used for card/enemy targeting.
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -100,9 +102,15 @@ public class Tower : MonoBehaviour
 
     void Die()
     {
-        //Destroy the turret once it is dead
+        // Destroy the tower GameObject
         Destroy(gameObject);
+        // when tower is destroyed, enemy will track the next tower.
+        if (targetedEnemy != null)
+        {
+            targetedEnemy.TowerDestroyed();
+        }
     }
+
 
     // Used in the enemy script when it is attacking a tower
     public void TakeDamage(int damage)
@@ -111,7 +119,7 @@ public class Tower : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            Die(); 
+            Die();
         }
     }
 }
