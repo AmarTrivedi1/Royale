@@ -56,13 +56,8 @@ public class Enemy : MonoBehaviour
             Attack();
         }
 
-        // Check if the target exists
-        if (target != null)
-        {
-            // Decrement the cooldown timer
-
-        }
-        else
+        // If no current tower target exists
+        if (target == null)
         {
             // If there's no current target, find a new one
             target = FindNearestTower();
@@ -71,6 +66,7 @@ public class Enemy : MonoBehaviour
                 // Optionally handle the case where there are no more towers
                 rb.velocity = Vector2.zero; // Stop moving if there are no targets
             }
+
         }
     }
 
@@ -159,24 +155,6 @@ public class Enemy : MonoBehaviour
 
     }
 
-    /*
-    void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Tower") && attackCooldownTimer <= 0)
-        {
-            rb.velocity = Vector2.zero;
-            isMoving = false; // Stop movement when colliding with a tower
-
-            Tower tower = collision.gameObject.GetComponent<Tower>();
-            if (tower != null)
-            {
-                Debug.Log("Enemy attacking tower");
-                tower.TakeDamage(attackDamage); // Deal damage to the tower
-                attackCooldownTimer = attackCooldown; // Reset the attack cooldown timer
-            }
-        }
-    }
-    */
 
     // When the enemy kills the target, and it's collider disappears
     void OnTriggerExit2D(Collider2D collision)
@@ -193,6 +171,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    // Replaced the OnTriggerStay2D. There were collider issues, so I moved attacking into it's own function.
     private void Attack()
     {
         if (attackTargetComponent != null)
