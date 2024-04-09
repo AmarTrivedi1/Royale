@@ -8,6 +8,15 @@ public class GameManager : MonoBehaviour
 
     public int player1Score = 0; // Score for player 1
     public int player2Score = 0; // Score for player 2
+    public int player1Elixir = 0; // Elixir for player 1
+    public int player2Elixir = 0; // Elixir for player 2
+
+    private float player1ElixirTimer;
+    private float player2ElixirTimer;
+    private float secondsPerElixir = 1;
+    private int MAX_ELIXIR = 5;
+
+    public GameObject cardSelector;
 
     public GameObject victoryPopup; // GameObject for displaying victory popup
     public TMP_Text victoryText; // TextMeshPro text for displaying victory message
@@ -15,11 +24,46 @@ public class GameManager : MonoBehaviour
     public TMP_Text player1ScoreText; // TextMeshPro text for displaying player 1's score
     public TMP_Text player2ScoreText; // TextMeshPro text for displaying player 2's score
 
+    public TMP_Text player1ElixirCountText;
+    public TMP_Text player2ElixirCountText;
+
     // Update will be called once per frame for tower counts
     void Update()
     {
         player1ScoreText.text = $"Player 1 Score: {player1Score}";
         player2ScoreText.text = $"Player 2 Score: {player2Score}";
+
+        player1ElixirCountText.text = $"Player 1 Elixir: {player1Elixir}";
+        player2ElixirCountText.text = $"Player 2 Elixir: {player2Elixir}";
+
+        if (player1Elixir < MAX_ELIXIR)
+        {
+            //Count down to give elixir
+            player1ElixirTimer -= Time.deltaTime;
+            //Once the count down is finished
+            if (player1ElixirTimer <= 0.0f)
+            {
+                //Give the player another elixir
+                player1Elixir++;
+                //Set the timer back
+                player1ElixirTimer = secondsPerElixir;
+            }
+        }
+        if (player2Elixir < MAX_ELIXIR)
+        {
+            //Count down to give elixir
+            player2ElixirTimer -= Time.deltaTime;
+            //Once the count down is finished
+            if (player2ElixirTimer <= 0.0f)
+            {
+                //Give the player another elixir
+                player2Elixir++;
+                //Set the timer back
+                player2ElixirTimer = secondsPerElixir;
+            }
+        }
+
+
     }
 
     // The Awake function ensures there's only one GameManager instance in the game.

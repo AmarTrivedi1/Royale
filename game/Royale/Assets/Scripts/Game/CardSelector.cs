@@ -15,6 +15,8 @@ public class CardSelector : MonoBehaviour
     public Transform P2SpawnTop;
     public Transform P2SpawnBot;
     private int p2SelectedCardIndex = -1;
+
+    public GameManager gameManager;
     
     // Executed every frame.
     void Update()
@@ -33,42 +35,52 @@ public class CardSelector : MonoBehaviour
         // Placement controls for Player 1.
         if (p1SelectedCardIndex != -1)
         {
-            // If player 1 presses 'w' (top lane placement).
-            if (Input.GetKeyDown(KeyCode.W))
+            if (gameManager.player1Elixir > 0)
             {
-                // Place the card in the corresponding postition.
-                PlaceCard(p1SelectedCardIndex, P1SpawnTop, p1Cards);
-                // Reset the index after placing the card.
-                p1SelectedCardIndex = -1;
-            }
-            // If player 1 presses 's' (bot lane placement).
-            else if (Input.GetKeyDown(KeyCode.S))
-            {
-                // Place the card in the corresponding postition.
-                PlaceCard(p1SelectedCardIndex, P1SpawnBot, p1Cards);
-                // Reset the index after placing the card.
-                p1SelectedCardIndex = -1;
+                // If player 1 presses 'w' (top lane placement).
+                if (Input.GetKeyDown(KeyCode.W))
+                {
+                    // Place the card in the corresponding postition.
+                    PlaceCard(p1SelectedCardIndex, P1SpawnTop, p1Cards);
+                    // Reset the index after placing the card.
+                    p1SelectedCardIndex = -1;
+                    gameManager.player1Elixir--;
+                }
+                // If player 1 presses 's' (bot lane placement).
+                else if (Input.GetKeyDown(KeyCode.S))
+                {
+                    // Place the card in the corresponding postition.
+                    PlaceCard(p1SelectedCardIndex, P1SpawnBot, p1Cards);
+                    // Reset the index after placing the card.
+                    p1SelectedCardIndex = -1;
+                    gameManager.player1Elixir--;
+                }
             }
         }
 
         // Placement controls for Player 2.
         if (p2SelectedCardIndex != -1)
         {
-            // If player 1 presses 'i' (bot lane placement).
-            if (Input.GetKeyDown(KeyCode.I))
+            if (gameManager.player2Elixir > 0)
             {
-                // Place the card in the corresponding postition.
-                PlaceCard(p2SelectedCardIndex, P2SpawnTop, p2Cards);
-                // Reset the index after placing the card.
-                p2SelectedCardIndex = -1; 
-            }
-            // If player 2 presses 'j' (bot lane placement).
-            else if (Input.GetKeyDown(KeyCode.J))
-            {
-                // Place the card in the corresponding postition.
-                PlaceCard(p2SelectedCardIndex, P2SpawnBot, p2Cards);
-                // Reset the index after placing the card.
-                p2SelectedCardIndex = -1; 
+                // If player 1 presses 'i' (bot lane placement).
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    // Place the card in the corresponding postition.
+                    PlaceCard(p2SelectedCardIndex, P2SpawnTop, p2Cards);
+                    // Reset the index after placing the card.
+                    p2SelectedCardIndex = -1;
+                    gameManager.player2Elixir--;
+                }
+                // If player 2 presses 'j' (bot lane placement).
+                else if (Input.GetKeyDown(KeyCode.J))
+                {
+                    // Place the card in the corresponding postition.
+                    PlaceCard(p2SelectedCardIndex, P2SpawnBot, p2Cards);
+                    // Reset the index after placing the card.
+                    p2SelectedCardIndex = -1;
+                    gameManager.player2Elixir--;
+                }
             }
         }
     }
