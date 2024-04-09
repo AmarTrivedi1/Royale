@@ -102,14 +102,19 @@ public class Tower : MonoBehaviour
 
     void Die()
     {
+        // Notify the GameManager that a tower has been destroyed
+        GameManager.instance.OnTowerDestroyed(playerNum);
+
         // Destroy the tower GameObject
         Destroy(gameObject);
-        // when tower is destroyed, enemy will track the next tower.
+
+        // When tower is destroyed, enemy will track the next tower.
         if (targetedEnemy != null)
         {
             targetedEnemy.TowerDestroyed();
         }
     }
+
 
 
     // Used in the enemy script when it is attacking a tower
