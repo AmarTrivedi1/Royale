@@ -143,6 +143,9 @@ public class Enemy : MonoBehaviour
         // Tower targeting and movement stopping
         if (collision.gameObject.CompareTag("Tower"))
         {
+
+            // Implement the same logic in the enemy targeting to ensure troops can never attack their own tower
+
             attackTargetComponent = collision.gameObject.GetComponent<Tower>(); // Set the attack target to the tower
 
             rb.velocity = Vector2.zero; // Stop the enemy when it collides with the tower
@@ -155,13 +158,19 @@ public class Enemy : MonoBehaviour
         // Enemy troop targeting  
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            attackTargetComponent = collision.gameObject.GetComponent<Enemy>(); // Set the attack target to the enemy
+            // Check if it is an opposing player troop before setting them as an attackTarget.
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            if (enemy.playerNum != this.playerNum)
+            {
+                attackTargetComponent = collision.gameObject.GetComponent<Enemy>(); // Set the attack target to the enemy
 
-            rb.velocity = Vector2.zero; // Stop the enemy when it collides with the other troop enemy
-            isMoving = false; // Stop movement when colliding with enemy
+                rb.velocity = Vector2.zero; // Stop the enemy when it collides with the other troop enemy
+                isMoving = false; // Stop movement when colliding with enemy
 
-            isAttacking = true;
-            Debug.Log("Enemy fighting a troop");
+                isAttacking = true;
+                Debug.Log("Enemy fighting a troop");
+            }
+
         }
 
     }
