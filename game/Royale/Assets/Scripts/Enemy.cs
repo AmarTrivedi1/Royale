@@ -140,41 +140,44 @@ public class Enemy : MonoBehaviour
     // Collision detection with tower - targeting system for attacking, and movement stopping
     void OnTriggerEnter2D(Collider2D collision)
     {
-        // Tower targeting and movement stopping
-        if (collision.gameObject.CompareTag("Tower"))
+        if (!isAttacking)
         {
-
-            // Implement the same logic in the enemy targeting to ensure troops can never attack their own tower
-            Tower tower = collision.gameObject.GetComponent<Tower>();
-            if (tower.playerNum != this.playerNum)
+            // Tower targeting and movement stopping
+            if (collision.gameObject.CompareTag("Tower"))
             {
-                attackTargetComponent = collision.gameObject.GetComponent<Tower>(); // Set the attack target to the tower
 
-                rb.velocity = Vector2.zero; // Stop the enemy when it collides with the tower
-                isMoving = false; // Stop movement when colliding with a tower
+                // Implement the same logic in the enemy targeting to ensure troops can never attack their own tower
+                Tower tower = collision.gameObject.GetComponent<Tower>();
+                if (tower.playerNum != this.playerNum)
+                {
+                    attackTargetComponent = collision.gameObject.GetComponent<Tower>(); // Set the attack target to the tower
 
-                isAttacking = true;
-                Debug.Log("Enemy stopping at tower");
+                    rb.velocity = Vector2.zero; // Stop the enemy when it collides with the tower
+                    isMoving = false; // Stop movement when colliding with a tower
+
+                    isAttacking = true;
+                    Debug.Log("Enemy stopping at tower");
+                }
+
             }
 
-        }
-
-        // Enemy troop targeting  
-        else if (collision.gameObject.CompareTag("Enemy"))
-        {
-            // Check if it is an opposing player troop before setting them as an attackTarget.
-            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
-            if (enemy.playerNum != this.playerNum)
+            // Enemy troop targeting  
+            else if (collision.gameObject.CompareTag("Enemy"))
             {
-                attackTargetComponent = collision.gameObject.GetComponent<Enemy>(); // Set the attack target to the enemy
+                // Check if it is an opposing player troop before setting them as an attackTarget.
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                if (enemy.playerNum != this.playerNum)
+                {
+                    attackTargetComponent = collision.gameObject.GetComponent<Enemy>(); // Set the attack target to the enemy
 
-                rb.velocity = Vector2.zero; // Stop the enemy when it collides with the other troop enemy
-                isMoving = false; // Stop movement when colliding with enemy
+                    rb.velocity = Vector2.zero; // Stop the enemy when it collides with the other troop enemy
+                    isMoving = false; // Stop movement when colliding with enemy
 
-                isAttacking = true;
-                Debug.Log("Enemy fighting a troop");
+                    isAttacking = true;
+                    Debug.Log("Enemy fighting a troop");
+                }
+
             }
-
         }
 
     }
@@ -191,6 +194,7 @@ public class Enemy : MonoBehaviour
 
             // Make the enemy start moving again
             isMoving = true;
+            FindAndMoveToNewTarget();
 
             Debug.Log("Enemy target lost");
         }
@@ -208,6 +212,9 @@ public class Enemy : MonoBehaviour
             {
                 Debug.Log("Enemy attacking tower");
                 tower.TakeDamage(attackDamage);
+
+                // Check if the tower has been defeated
+                targetDefeated = tower.health <= 0;
             }
 
             // Attack enemy troops
@@ -231,6 +238,8 @@ public class Enemy : MonoBehaviour
         // Check if the current attack target is still valid
         if (attackTargetComponent == null || attackTargetComponent.gameObject == null || targetDefeated)
         {
+            attackTargetComponent = null; // Clear the target if it's defeated
+            isAttacking = false; // Stop attacking mode
             FindAndMoveToNewTarget();
         }
     }
@@ -257,10 +266,12 @@ public class Enemy : MonoBehaviour
         if (target != null)
         {
             isMoving = true; // Resume movement if a new target is found
+            UpdateMovementTowardsTarget();
             Debug.Log("Moving to new target");
         }
         else
         {
+            rb.velocity = Vector2.zero;
             isMoving = false; // Stay put if no new target is available
             Debug.Log("No new targets available");
         }
