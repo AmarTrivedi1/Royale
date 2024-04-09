@@ -137,9 +137,10 @@ public class Enemy : MonoBehaviour
     }
 
 
-    // Collision detection with tower
+    // Collision detection with tower - targeting system for attacking, and movement stopping
     void OnTriggerEnter2D(Collider2D collision)
     {
+        // Tower targeting and movement stopping
         if (collision.gameObject.CompareTag("Tower"))
         {
             attackTargetComponent = collision.gameObject.GetComponent<Tower>(); // Set the attack target to the tower
@@ -151,7 +152,17 @@ public class Enemy : MonoBehaviour
             Debug.Log("Enemy stopping at tower");
         }
 
-        // Implement else if here for troop/enemy targeting
+        // Enemy troop targeting  
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            attackTargetComponent = collision.gameObject.GetComponent<Enemy>(); // Set the attack target to the enemy
+
+            rb.velocity = Vector2.zero; // Stop the enemy when it collides with the other troop enemy
+            isMoving = false; // Stop movement when colliding with enemy
+
+            isAttacking = true;
+            Debug.Log("Enemy fighting a troop");
+        }
 
     }
 
@@ -165,7 +176,8 @@ public class Enemy : MonoBehaviour
             attackTargetComponent = null; // Reset the target
             isAttacking = false; // Stop attacking
 
-            // Potentially, make the enemy start moving again, if desired
+            // Make the enemy start moving again
+            isMoving = true;
 
             Debug.Log("Enemy target lost");
         }
@@ -174,15 +186,26 @@ public class Enemy : MonoBehaviour
     // Replaced the OnTriggerStay2D. There were collider issues, so I moved attacking into it's own function.
     private void Attack()
     {
+        bool targetDefeated = false;
+
         if (attackTargetComponent != null)
         {
+            // Attack enemy towers
             if (attackTargetComponent is Tower tower)
             {
                 Debug.Log("Enemy attacking tower");
                 tower.TakeDamage(attackDamage);
             }
 
-            // Implement else if here for troop/enemy attacking
+            // Attack enemy troops
+            else if (attackTargetComponent is Enemy enemy)
+            {
+                Debug.Log("Enemy attacking troop");
+                enemy.TakeDamage(attackDamage);
+
+                // Check if the enemy troop has been defeated
+                targetDefeated = enemy.currentHealth <= 0;
+            }
 
             attackCooldownTimer = attackCooldown; // Reset the cooldown
         }
@@ -190,6 +213,12 @@ public class Enemy : MonoBehaviour
         else
         {
             isAttacking = false;
+        }
+
+        // Check if the current attack target is still valid
+        if (attackTargetComponent == null || attackTargetComponent.gameObject == null || targetDefeated)
+        {
+            FindAndMoveToNewTarget();
         }
     }
 
@@ -206,6 +235,21 @@ public class Enemy : MonoBehaviour
         else
         {
             rb.velocity = Vector2.zero;
+        }
+    }
+
+    private void FindAndMoveToNewTarget()
+    {
+        target = FindNearestTower(); // Attempt to find a new tower target
+        if (target != null)
+        {
+            isMoving = true; // Resume movement if a new target is found
+            Debug.Log("Moving to new target");
+        }
+        else
+        {
+            isMoving = false; // Stay put if no new target is available
+            Debug.Log("No new targets available");
         }
     }
 
