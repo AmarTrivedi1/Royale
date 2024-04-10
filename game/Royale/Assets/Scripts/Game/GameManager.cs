@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -18,7 +19,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject cardSelector;
 
-    public GameObject victoryPopup; // GameObject for displaying victory popup
     public TMP_Text victoryText; // TextMeshPro text for displaying victory message
 
     public TMP_Text player1ScoreText; // TextMeshPro text for displaying player 1's score
@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour
         player1ScoreText.text = $"Player 1 Score: {player1Score}";
         player2ScoreText.text = $"Player 2 Score: {player2Score}";
 
-        player1ElixirCountText.text = $"Player 1 Elixir: {player1Elixir}";
-        player2ElixirCountText.text = $"Player 2 Elixir: {player2Elixir}";
+        player1ElixirCountText.text = $"Elixir: {player1Elixir}";
+        player2ElixirCountText.text = $"Elixir: {player2Elixir}";
 
         if (player1Elixir < MAX_ELIXIR)
         {
@@ -61,6 +61,12 @@ public class GameManager : MonoBehaviour
                 //Set the timer back
                 player2ElixirTimer = secondsPerElixir;
             }
+        }
+
+        // Check for victory condition and load main menu scene if it's met
+        if (player1Score >= 2 || player2Score >= 2)
+        {
+            SceneManager.LoadScene("Main Menu"); 
         }
 
 
@@ -91,22 +97,18 @@ public class GameManager : MonoBehaviour
         if (player1Score == 2 && player2Score == 2)
         {
             // Display victory message for a tie
-            victoryPopup.SetActive(true); // Activate the victory popup
             victoryText.gameObject.SetActive(true); // Activate the victory text
             victoryText.text = "It's a Tie!"; // Set the victory message
         }
         else if (player1Score == 2)
         {
-            victoryPopup.SetActive(true);
             victoryText.gameObject.SetActive(true);
-            victoryText.text = "Player 1 Wins!"; 
+            victoryText.text = "Player 1 Wins!";
         }
         else if (player2Score == 2)
         {
-           
-            victoryPopup.SetActive(true); 
-            victoryText.gameObject.SetActive(true); 
-            victoryText.text = "Player 2 Wins!"; 
+            victoryText.gameObject.SetActive(true);
+            victoryText.text = "Player 2 Wins!";
         }
     }
 }
