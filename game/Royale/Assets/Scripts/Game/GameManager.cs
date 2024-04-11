@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text player1ElixirCountText;
     public TMP_Text player2ElixirCountText;
 
+    public GameObject okButton;
+
     // Update will be called once per frame for tower counts
     void Update()
     {
@@ -66,7 +68,9 @@ public class GameManager : MonoBehaviour
         // Check for victory condition and load main menu scene if it's met
         if (player1Score >= 2 || player2Score >= 2)
         {
-            SceneManager.LoadScene("Main Menu"); 
+
+            Debug.Log("This is where we loaded the scene");
+            okButton.SetActive(true);
         }
 
 
@@ -81,7 +85,7 @@ public class GameManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject); // If another instance exists, destroy this one
 
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     // Call this method when a tower is destroyed
@@ -110,5 +114,10 @@ public class GameManager : MonoBehaviour
             victoryText.gameObject.SetActive(true);
             victoryText.text = "Player 2 Wins!";
         }
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
     }
 }
