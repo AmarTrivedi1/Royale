@@ -191,6 +191,14 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 21441923}
+    - target: {fileID: 6644599282565502462, guid: 9588450ed7b68a44f9d6ae289232c4a7, type: 3}
+      propertyPath: p1Cards.Array.data[0]
+      value: 
+      objectReference: {fileID: 4354042976590733858, guid: 359c7a0a561ff9b44b981cdee01179e6, type: 3}
+    - target: {fileID: 6644599282565502462, guid: 9588450ed7b68a44f9d6ae289232c4a7, type: 3}
+      propertyPath: p2Cards.Array.data[0]
+      value: 
+      objectReference: {fileID: 4354042976590733858, guid: 359c7a0a561ff9b44b981cdee01179e6, type: 3}
     - target: {fileID: 9175181526805143097, guid: 9588450ed7b68a44f9d6ae289232c4a7, type: 3}
       propertyPath: m_Name
       value: CardSelector
@@ -464,7 +472,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -162}
+  m_AnchoredPosition: {x: -6.1667, y: -241}
   m_SizeDelta: {x: 211.6665, y: 47.7142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &177833774
