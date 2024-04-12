@@ -11,7 +11,6 @@ public class Troop : Enemy
         moveSpeed = 5f; // Slower movement speed
         attackDamage = 10; // High attack damage
         attackCooldown = 1; // High cooldown 
-        elixirCost = 2;
 
         rb = GetComponent<Rigidbody2D>();
         target = FindNearestTower(); // Use the Enemy's method to find the nearest tower

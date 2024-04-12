@@ -24,7 +24,7 @@ public class Enemy : MonoBehaviour
     private bool isMoving = true; // Controls troop movement
     private Component attackTargetComponent = null; // Used to store the current target to attack (tower or enemy troop)
     private bool isAttacking = false;
-    public int elixirCost = 3; // Default to 3. Should be overwritten in all child classes
+    public int elixirCost = 3; // Default to 3. At the moment, is changed in the editor for each enemy type.
 
 
     void Start()

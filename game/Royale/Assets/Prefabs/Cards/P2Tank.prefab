@@ -108,7 +108,7 @@ MonoBehaviour:
   attackCooldown: 5
   attackCooldownTimer: 0
   attackDamage: 10
-  elixirCost: 3
+  elixirCost: 5
 --- !u!50 &-8664880979987297289
 Rigidbody2D:
   serializedVersion: 4

@@ -998,7 +998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4447234310651786890, guid: bd5d25cc6d61b654396c356c8ebdccf5, type: 3}
       propertyPath: health
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4447234310651786890, guid: bd5d25cc6d61b654396c356c8ebdccf5, type: 3}
       propertyPath: topleft
@@ -1938,7 +1938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4447234310651786890, guid: bd5d25cc6d61b654396c356c8ebdccf5, type: 3}
       propertyPath: health
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4447234310651786890, guid: bd5d25cc6d61b654396c356c8ebdccf5, type: 3}
       propertyPath: shotPrefab

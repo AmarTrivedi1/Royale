@@ -135,6 +135,7 @@ MonoBehaviour:
   attackCooldown: 5
   attackCooldownTimer: 0
   attackDamage: 10
+  elixirCost: 2
 --- !u!61 &-6102549337073378421
 BoxCollider2D:
   m_ObjectHideFlags: 0
