@@ -15,8 +15,8 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 100; // Maximum health of the enemy
     public int currentHealth; // Current health of the enemy
     public float moveSpeed = 2f; // Enemy default speed for noww
-    private Rigidbody2D rb;
-    private Transform target; // Reference to the target (Tower)
+    public Rigidbody2D rb;
+    public Transform target; // Reference to the target (Tower)
     public int playerNum = 1; // Is it a player 1 or player 2 card? Setting this to 1 manually for testing purposes, but will be set when player places cards.
     public float attackCooldown = 5; // Seconds between attacks
     public float attackCooldownTimer = 0; // Timer to track cooldown between attacks
@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
 
 
     // Find the nearest tower to the enemy
-    Transform FindNearestTower()
+    public Transform FindNearestTower()
     {
         GameObject[] towers = GameObject.FindGameObjectsWithTag("Tower");
         Transform nearestTower = null;
