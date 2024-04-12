@@ -198,7 +198,11 @@ PrefabInstance:
     - target: {fileID: 6644599282565502462, guid: 9588450ed7b68a44f9d6ae289232c4a7, type: 3}
       propertyPath: p2Cards.Array.data[0]
       value: 
-      objectReference: {fileID: 4354042976590733858, guid: 359c7a0a561ff9b44b981cdee01179e6, type: 3}
+      objectReference: {fileID: 4354042976590733858, guid: fe33f454a39a6074f999a563a4502be1, type: 3}
+    - target: {fileID: 6644599282565502462, guid: 9588450ed7b68a44f9d6ae289232c4a7, type: 3}
+      propertyPath: p2Cards.Array.data[1]
+      value: 
+      objectReference: {fileID: 1437400295188280917, guid: 7e45ef42ae76fb34eb3fdcb63cf6ea52, type: 3}
     - target: {fileID: 9175181526805143097, guid: 9588450ed7b68a44f9d6ae289232c4a7, type: 3}
       propertyPath: m_Name
       value: CardSelector
@@ -994,7 +998,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4447234310651786890, guid: bd5d25cc6d61b654396c356c8ebdccf5, type: 3}
       propertyPath: health
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4447234310651786890, guid: bd5d25cc6d61b654396c356c8ebdccf5, type: 3}
       propertyPath: topleft
@@ -1934,7 +1938,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4447234310651786890, guid: bd5d25cc6d61b654396c356c8ebdccf5, type: 3}
       propertyPath: health
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4447234310651786890, guid: bd5d25cc6d61b654396c356c8ebdccf5, type: 3}
       propertyPath: shotPrefab
