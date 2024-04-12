@@ -41,19 +41,19 @@ public class CardSelector : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.W))
                 {
                     // Place the card in the corresponding postition.
-                    PlaceCard(p1SelectedCardIndex, P1SpawnTop, p1Cards);
+                    PlaceCard(p1SelectedCardIndex, P1SpawnTop, p1Cards, 1);
                     // Reset the index after placing the card.
                     p1SelectedCardIndex = -1;
-                    gameManager.player1Elixir--;
+
                 }
                 // If player 1 presses 's' (bot lane placement).
                 else if (Input.GetKeyDown(KeyCode.S))
                 {
                     // Place the card in the corresponding postition.
-                    PlaceCard(p1SelectedCardIndex, P1SpawnBot, p1Cards);
+                    PlaceCard(p1SelectedCardIndex, P1SpawnBot, p1Cards, 1);
                     // Reset the index after placing the card.
                     p1SelectedCardIndex = -1;
-                    gameManager.player1Elixir--;
+
                 }
             }
         }
@@ -63,23 +63,23 @@ public class CardSelector : MonoBehaviour
         {
             if (gameManager.player2Elixir > 0)
             {
-                // If player 1 presses 'i' (bot lane placement).
+                // If player 2 presses 'i' (top lane placement).
                 if (Input.GetKeyDown(KeyCode.I))
                 {
                     // Place the card in the corresponding postition.
-                    PlaceCard(p2SelectedCardIndex, P2SpawnTop, p2Cards);
+                    PlaceCard(p2SelectedCardIndex, P2SpawnTop, p2Cards, 2);
                     // Reset the index after placing the card.
                     p2SelectedCardIndex = -1;
-                    gameManager.player2Elixir--;
+
                 }
                 // If player 2 presses 'j' (bot lane placement).
                 else if (Input.GetKeyDown(KeyCode.J))
                 {
                     // Place the card in the corresponding postition.
-                    PlaceCard(p2SelectedCardIndex, P2SpawnBot, p2Cards);
+                    PlaceCard(p2SelectedCardIndex, P2SpawnBot, p2Cards, 2);
                     // Reset the index after placing the card.
                     p2SelectedCardIndex = -1;
-                    gameManager.player2Elixir--;
+
                 }
             }
         }
@@ -98,13 +98,27 @@ public class CardSelector : MonoBehaviour
 
     
     // Places a card at the specified spawn point using the selected card index and cards array.
-    void PlaceCard(int selectedCardIndex, Transform spawnPoint, GameObject[] cards)
+    void PlaceCard(int selectedCardIndex, Transform spawnPoint, GameObject[] cards, int playerNum)
     {
         // If the selection is invalid among the players list:
         if (selectedCardIndex < 0 || selectedCardIndex >= cards.Length) return;
+
         // Retrieve the prefab to instantiate based on the selected card index.
         GameObject playerPrefab = cards[selectedCardIndex];
+
         // Instantiate the prefab at the designated spawn point.
         Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
+
+        // Elixir deduction
+        if (playerNum == 1)
+        {
+            gameManager.player1Elixir--;
+        }
+        else if (playerNum == 2)
+        {
+            gameManager.player2Elixir--;
+        }
+        
+
     }
 }

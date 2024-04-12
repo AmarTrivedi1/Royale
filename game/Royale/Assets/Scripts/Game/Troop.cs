@@ -15,4 +15,5 @@ public class Troop : Enemy
         rb = GetComponent<Rigidbody2D>();
         target = FindNearestTower(); // Use the Enemy's method to find the nearest tower
     }
+ 
 }
