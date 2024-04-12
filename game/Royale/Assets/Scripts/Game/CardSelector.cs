@@ -106,19 +106,29 @@ public class CardSelector : MonoBehaviour
         // Retrieve the prefab to instantiate based on the selected card index.
         GameObject playerPrefab = cards[selectedCardIndex];
 
-        // Instantiate the prefab at the designated spawn point.
-        GameObject newCard = Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
-        Enemy enemy = newCard.GetComponent<Enemy>();
+        // Get the enemy script from the chosen prefab
+        Enemy enemy = playerPrefab.GetComponent<Enemy>();
 
         // Elixir deduction
         if (playerNum == 1)
         {
-            //gameManager.player1Elixir--;
-            gameManager.player1Elixir -= enemy.elixirCost;
+            if (gameManager.player1Elixir >= enemy.elixirCost) // Check if player has enough elixir for the card
+            {
+                // Instantiate the prefab at the designated spawn point.
+                Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
+                gameManager.player1Elixir -= enemy.elixirCost;
+            }
+            
         }
         else if (playerNum == 2)
         {
-            gameManager.player2Elixir -= enemy.elixirCost;
+            if (gameManager.player2Elixir >= enemy.elixirCost) // Check if the player has enough elixir for the card
+            {
+                // Instantiate the prefab at the designated spawn point.
+                Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
+                gameManager.player2Elixir -= enemy.elixirCost;
+            }
+            
         }
         
 

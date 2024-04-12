@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
         if (player1Score >= 2 || player2Score >= 2)
         {
 
-            Debug.Log("This is where we loaded the scene");
+            //Debug.Log("This is where we loaded the scene");
             okButton.SetActive(true);
         }
 
