@@ -45,16 +45,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   p1Cards:
-  - {fileID: 6379711993548419812, guid: f0290c59bf1b251429d90a97da143062, type: 3}
-  - {fileID: 6379711993548419812, guid: f0290c59bf1b251429d90a97da143062, type: 3}
+  - {fileID: 4354042976590733858, guid: 359c7a0a561ff9b44b981cdee01179e6, type: 3}
+  - {fileID: 1437400295188280917, guid: c91fe63048c571c4eaf482bc58c5a6bc, type: 3}
   - {fileID: 6379711993548419812, guid: f0290c59bf1b251429d90a97da143062, type: 3}
   - {fileID: 6379711993548419812, guid: f0290c59bf1b251429d90a97da143062, type: 3}
   P1SpawnTop: {fileID: 3460183908917115511, guid: ed5b102318a32dd49bdd359adf44ab99, type: 3}
   P1SpawnBot: {fileID: 3460183908917115511, guid: 388deeed67a07914097e5a612fae4a5b, type: 3}
   p2Cards:
-  - {fileID: 6379711993548419812, guid: 926fea485f46a4a438b8eeddb88c5e77, type: 3}
-  - {fileID: 6379711993548419812, guid: 926fea485f46a4a438b8eeddb88c5e77, type: 3}
+  - {fileID: 4354042976590733858, guid: 359c7a0a561ff9b44b981cdee01179e6, type: 3}
+  - {fileID: 1437400295188280917, guid: c91fe63048c571c4eaf482bc58c5a6bc, type: 3}
   - {fileID: 6379711993548419812, guid: 926fea485f46a4a438b8eeddb88c5e77, type: 3}
   - {fileID: 6379711993548419812, guid: 926fea485f46a4a438b8eeddb88c5e77, type: 3}
   P2SpawnTop: {fileID: 3460183908917115511, guid: 45ad04326b3775049be9e09c9b3f14a5, type: 3}
   P2SpawnBot: {fileID: 3460183908917115511, guid: 2455cf1a53db14b4893f96834729d95e, type: 3}
+  gameManager: {fileID: 0}
