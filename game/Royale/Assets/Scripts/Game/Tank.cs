@@ -14,5 +14,6 @@ public class Tank : Enemy
 
         rb = GetComponent<Rigidbody2D>();
         target = FindNearestTower(); // Use the Enemy's method to find the nearest tower
+        healthBar.setMaxHealth(maxHealth);
     }
 }

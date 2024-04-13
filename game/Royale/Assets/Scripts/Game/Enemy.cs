@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     private Component attackTargetComponent = null; // Used to store the current target to attack (tower or enemy troop)
     private bool isAttacking = false;
     public int elixirCost = 3; // Default to 3. At the moment, is changed in the editor for each enemy type.
+    public HealthBar healthBar;
 
 
     void Start()
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
 
         // Initialize current health to max health
         currentHealth = maxHealth;
+        healthBar.setMaxHealth(maxHealth);
     }
 
     void FixedUpdate()
@@ -106,6 +108,7 @@ public class Enemy : MonoBehaviour
     {
         // Subtract the damage from enemies current health
         currentHealth -= damage;
+        healthBar.setHealth(currentHealth);
 
         // Check if the enemy's health is depleted
         if (currentHealth <= 0)

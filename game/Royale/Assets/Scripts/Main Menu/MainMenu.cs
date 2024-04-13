@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public GameManager gameManager;
     //Scene 1 is the game, 0 is the main menu
     //Can use scene name for transitioning scenes.
     public void PlayGame()

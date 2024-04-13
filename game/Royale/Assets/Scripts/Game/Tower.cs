@@ -18,6 +18,7 @@ public class Tower : MonoBehaviour
     private bool enemyTargeted = false; //Whether there is an active targeted enemy unit.
 
     public int playerNum = 2; // Player 1 or Player 2 tower. Used for card/enemy targeting.
+    public HealthBar healthBar;
 
 
 
@@ -25,6 +26,7 @@ public class Tower : MonoBehaviour
     void Start()
     {
         timeUntilAttack = attackSpeed;
+        healthBar.setMaxHealth(health);
     }
 
     // Update is called once per frame
@@ -122,6 +124,7 @@ public class Tower : MonoBehaviour
     {
         Debug.Log("Tower taking damage");
         health -= damage;
+        healthBar.setHealth(health);
         if (health <= 0)
         {
             Die();

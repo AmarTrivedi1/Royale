@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance; // Singleton instance
 
+    public bool playerVsPlayer = true;
+
     public int player1Score = 0; // Score for player 1
     public int player2Score = 0; // Score for player 2
     public int player1Elixir = 0; // Elixir for player 1
@@ -14,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     private float player1ElixirTimer;
     private float player2ElixirTimer;
-    private float secondsPerElixir = 1;
+    private float secondsPerElixir = 0.1f;
     private int MAX_ELIXIR = 5;
 
     public GameObject cardSelector;
@@ -28,6 +31,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text player2ElixirCountText;
 
     public GameObject okButton;
+    public GameObject gamemodesButtons;
 
     // Update will be called once per frame for tower counts
     void Update()
@@ -119,5 +123,17 @@ public class GameManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void EnabledPVP()
+    {
+        playerVsPlayer = true;
+        gamemodesButtons.SetActive(false);
+    }
+
+    public void DisablePVP()
+    {
+        playerVsPlayer = false;
+        gamemodesButtons.SetActive(false);
     }
 }
