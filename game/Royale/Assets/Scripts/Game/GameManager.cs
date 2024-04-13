@@ -32,8 +32,8 @@ public class GameManager : MonoBehaviour
     // Update will be called once per frame for tower counts
     void Update()
     {
-        player1ScoreText.text = $"Player 1 Score: {player1Score}";
-        player2ScoreText.text = $"Player 2 Score: {player2Score}";
+        player1ScoreText.text = $"Score: {player1Score}";
+        player2ScoreText.text = $"Score: {player2Score}";
 
         player1ElixirCountText.text = $"Elixir: {player1Elixir}";
         player2ElixirCountText.text = $"Elixir: {player2Elixir}";
