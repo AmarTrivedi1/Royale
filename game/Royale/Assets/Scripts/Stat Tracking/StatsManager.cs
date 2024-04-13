@@ -6,13 +6,23 @@ using UnityEngine;
 public class StatsManager : MonoBehaviour
 {
 
+    public static StatsManager Instance { get; private set; } // Singleton instance
     public PlayerStats stats;
     private string statsPath;
 
     void Awake()
     {
-        statsPath = Application.persistentDataPath + "/playerStats.json";
-        LoadStats();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Make this object persistent
+            statsPath = Application.persistentDataPath + "/playerStats.json";
+            LoadStats();
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy any duplicate objects that might be created on scene load
+        }
     }
 
     private void LoadStats()

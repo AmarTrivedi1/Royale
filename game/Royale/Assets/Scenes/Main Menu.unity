@@ -2203,6 +2203,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230912851}
   m_CullTransparentMesh: 1
+--- !u!1 &1491098871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1491098873}
+  - component: {fileID: 1491098872}
+  m_Layer: 0
+  m_Name: StatsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1491098872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491098871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0c675ecd3695f14a9a0ad7a34fa88f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    totalGamesPlayed: 0
+    p1TotalElixirSpent: 0
+    p1TotalCardsPlaced: 0
+    p1TotalSpeedyPlaced: 0
+    p1TotalTankPlaced: 0
+    p1TotalRegularPlaced: 0
+    p2TotalElixirSpent: 0
+    p2TotalCardsPlaced: 0
+    p2TotalSpeedyPlaced: 0
+    p2TotalTankPlaced: 0
+    p2TotalRegularPlaced: 0
+--- !u!4 &1491098873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491098871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 692.5161, y: 160.36818, z: 1.1178548}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1657486189
 GameObject:
   m_ObjectHideFlags: 0
@@ -3021,3 +3077,4 @@ SceneRoots:
   - {fileID: 765641526}
   - {fileID: 416889812}
   - {fileID: 1054184224}
+  - {fileID: 1491098873}
