@@ -25,6 +25,12 @@ public class StatsManager : MonoBehaviour
         }
     }
 
+    // ONLY FOR TESTING TO SEE WHERE THE FILE IS
+    void Start()
+    {
+        Debug.Log(statsPath);
+    }
+
     private void LoadStats()
     {
         if (File.Exists(statsPath))
