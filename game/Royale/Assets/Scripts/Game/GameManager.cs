@@ -85,7 +85,9 @@ public class GameManager : MonoBehaviour
         else if (instance != this)
             Destroy(gameObject); // If another instance exists, destroy this one
 
-        //DontDestroyOnLoad(gameObject);
+        
+        // Update Games played stat
+        StatsManager.Instance.UpdateTotalGamesPlayed();
     }
 
     // Call this method when a tower is destroyed

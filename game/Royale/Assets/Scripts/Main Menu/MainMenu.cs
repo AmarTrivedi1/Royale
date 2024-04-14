@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     public GameObject controlsPanel;
     public GameObject tutorialPanel;
+    public GameObject statsPanel;
 
     // Pauses the game.
     public void PauseGame()
@@ -73,5 +74,19 @@ public class MainMenu : MonoBehaviour
     {
         UnpauseGame();
         controlsPanel.SetActive(false);
+    }
+
+     // Opens the Stats panel
+    public void OpenStats()
+    {
+        PauseGame();
+        statsPanel.SetActive(true);
+    }
+
+    // Closes the stats panel
+    public void CloseStats()
+    {
+        UnpauseGame();
+        statsPanel.SetActive(false);
     }
 }
