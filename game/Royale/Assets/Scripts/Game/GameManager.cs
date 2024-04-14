@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance; // Singleton instance
 
+    public bool playerVsPlayer = true;
+
     public int player1Score = 0; // Score for player 1
     public int player2Score = 0; // Score for player 2
     public int player1Elixir = 0; // Elixir for player 1
@@ -28,10 +30,20 @@ public class GameManager : MonoBehaviour
     public TMP_Text player2ElixirCountText;
 
     public GameObject okButton;
+    public GameObject gamemodesButtons;
 
     // Update will be called once per frame for tower counts
     void Update()
     {
+        if (gamemodesButtons.activeSelf)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
         player1ScoreText.text = $"Score: {player1Score}";
         player2ScoreText.text = $"Score: {player2Score}";
 
@@ -121,5 +133,17 @@ public class GameManager : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void EnabledPVP()
+    {
+        playerVsPlayer = true;
+        gamemodesButtons.SetActive(false);
+    }
+
+    public void DisablePVP()
+    {
+        playerVsPlayer = false;
+        gamemodesButtons.SetActive(false);
     }
 }
