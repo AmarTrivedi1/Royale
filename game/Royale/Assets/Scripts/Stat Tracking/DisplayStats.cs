@@ -17,19 +17,25 @@ public class DisplayStats : MonoBehaviour
         if (StatsManager.Instance != null)
         {
             PlayerStats stats = StatsManager.Instance.stats;
-            statsText.text = $"Total Games Played: {stats.totalGamesPlayed}\n" +
+            statsText.text = $"<align=\"center\"><b>Statistics</b></align>\n" +
+            
+                             $"Total Games Played: {stats.totalGamesPlayed}\n\n" +
                             
                              $"Player 1 Total Elixir Spent: {stats.p1TotalElixirSpent}\n" +
-                             $"Player 1 Total Cards Placed: {stats.p1TotalCardsPlaced}\n" +
+                             $"Player 1 Total Cards Placed: {stats.p1TotalCardsPlaced}\n\n" +
+                             /*
                              $"Player 1 Total Speedy Placed: {stats.p1TotalSpeedyPlaced}\n" +
                              $"Player 1 Total Tank Placed: {stats.p1TotalTankPlaced}\n" +
                              $"Player 1 Total Regular Placed: {stats.p1TotalRegularPlaced}\n" +
+                             */
                              
                              $"Player 2 Total Elixir Spent: {stats.p2TotalElixirSpent}\n" +
-                             $"Player 2 Total Cards Placed: {stats.p2TotalCardsPlaced}\n" +
+                             $"Player 2 Total Cards Placed: {stats.p2TotalCardsPlaced}";
+                             /*
                              $"Player 2 Total Speedy Placed: {stats.p2TotalSpeedyPlaced}\n" +
                              $"Player 2 Total Tank Placed: {stats.p2TotalTankPlaced}\n" +
                              $"Player 2 Total Regular Placed: {stats.p2TotalRegularPlaced}";
+                             */
         }
         else
         {

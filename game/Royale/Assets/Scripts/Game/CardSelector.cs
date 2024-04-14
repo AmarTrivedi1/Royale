@@ -117,6 +117,10 @@ public class CardSelector : MonoBehaviour
                 // Instantiate the prefab at the designated spawn point.
                 Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
                 gameManager.player1Elixir -= enemy.elixirCost;
+
+                // Stats update
+                StatsManager.Instance.UpdateP1TotalElixirSpent(enemy.elixirCost); // Elixir spent stat
+                StatsManager.Instance.UpdateP1TotalCardsPlaced(); // P1 Total cards placed stat
             }
             
         }
@@ -127,6 +131,10 @@ public class CardSelector : MonoBehaviour
                 // Instantiate the prefab at the designated spawn point.
                 Instantiate(playerPrefab, spawnPoint.position, Quaternion.identity);
                 gameManager.player2Elixir -= enemy.elixirCost;
+
+                // Stats update
+                StatsManager.Instance.UpdateP2TotalElixirSpent(enemy.elixirCost); // Elixir spent stat
+                StatsManager.Instance.UpdateP2TotalCardsPlaced(); // P2 Total cards placed stat
             }
             
         }
