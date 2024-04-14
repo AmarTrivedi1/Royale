@@ -2075,7 +2075,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<align=center><b>Reg</b></align>\n     Cost:\n     Speed: \n     Damage:"
+  m_text: "<align=center><b>Reg</b></align>\n     Cost: 3\n     Speed: 2\n     Damage:
+    50"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2286,7 +2287,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<align=center><b>Tank</b></align>\n     Cost:\n     Speed: \n     Damage:"
+  m_text: "<align=center><b>Tank</b></align>\n     Cost: 5\n     Speed: 1\n     Damage:
+    75"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2420,7 +2422,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<align=center><b>Reg</b></align>\n     Cost:\n     Speed: \n     Damage:"
+  m_text: "<align=center><b>Reg</b></align>\n     Cost: 3\n     Speed: 2\n     Damage:
+    50"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2727,7 +2730,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<align=center><b>Reg</b></align>\n     Cost:\n     Speed: \n     Damage:"
+  m_text: "<align=center><b>Reg</b></align>\n     Cost: 3\n     Speed: 2\n     Damage:
+    50"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3085,7 +3089,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<align=center><b>OP</b></align>\n     Cost:\n     Speed: \n     Damage:"
+  m_text: "<align=center><b>OP</b></align>\n     Cost: 2\n     Speed: 5\n     Damage:
+    10"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5027,6 +5032,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlsPanel: {fileID: 1210943078}
   tutorialPanel: {fileID: 98604661}
+  statsPanel: {fileID: 0}
 --- !u!1 &1210115306
 GameObject:
   m_ObjectHideFlags: 0
@@ -5677,7 +5683,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<align=center><b>Reg</b></align>\n     Cost:\n     Speed: \n     Damage:"
+  m_text: "<align=center><b>Reg</b></align>\n     Cost: 3\n     Speed: 2\n     Damage:
+    50"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6152,7 +6159,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<align=center><b>OP</b></align>\n     Cost:\n     Speed: \n     Damage:"
+  m_text: "<align=center><b>OP</b></align>\n     Cost: 2\n     Speed: 5\n     Damage:
+    10"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7811,7 +7819,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<align=center><b>Tank</b></align>\n     Cost:\n     Speed: \n     Damage:"
+  m_text: "<align=center><b>Tank</b></align>\n     Cost: 5\n     Speed: 1\n     Damage:
+    75"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
